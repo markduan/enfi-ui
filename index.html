@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/antd.css">
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "antd": "https://ofapkg.pek3b.qingstor.com/antd/antd.4.15.0.js",
+        "lodash": "https://ofapkg.pek3b.qingstor.com/lodash/lodash.js",
+        "react-dom": "https://ofapkg.pek3b.qingstor.com/react-dom@17.0.1/react-dom.17.0.1.js",
+        "react": "https://ofapkg.pek3b.qingstor.com/react@17.0.1/react.17.0.1.js",
+        "react-is": "https://ofapkg.pek3b.qingstor.com/react-is@17.0.1/react-is.17.0.1.js",
+        "moment": "https://ofapkg.pek3b.qingstor.com/moment/moment.js",
+        "@ofa/render-engine": "https://ofapkg.pek3b.qingstor.com/@ofa/render-engine@0.6.0/index.js",
+        "@ofa/utils": "https://ofapkg.pek3b.qingstor.com/@ofa/utils@0.0.1/index.js",
+        "@ofa/ui": "https://ofapkg.pek3b.qingstor.com/@ofa/ui@0.2.2/index.js"
+      },
+      "scopes": {
+        "https://ofapkg.pek3b.qingstor.com/@ofa/render-engine@0.6.0/": {
+          "rxjs/ajax": "https://ofapkg.pek3b.qingstor.com/@ofa/rxjs@7.4.0/rxjs-ajax.js",
+          "rxjs/fetch": "https://ofapkg.pek3b.qingstor.com/@ofa/rxjs@7.4.0/rxjs-fetch.js",
+          "rxjs/operators": "https://ofapkg.pek3b.qingstor.com/@ofa/rxjs@7.4.0/rxjs-operators.js",
+          "rxjs/shared": "https://ofapkg.pek3b.qingstor.com/@ofa/rxjs@7.4.0/rxjs-shared.js",
+          "rxjs/testing": "https://ofapkg.pek3b.qingstor.com/@ofa/rxjs@7.4.0/rxjs-testing.js",
+          "rxjs/websocket": "https://ofapkg.pek3b.qingstor.com/@ofa/rxjs@7.4.0/rxjs-websocket.js",
+          "rxjs": "https://ofapkg.pek3b.qingstor.com/@ofa/rxjs@7.4.0/rxjs.js"
+        }
+      }
+    }
+  </script>
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "enfi-ui": "/dist/enfi-ui@1.0.0/index.js"
+      }
+    }
+  </script>
+  <script src="https://ofapkg.pek3b.qingstor.com/system@6.10.3/system.6.10.3.js"></script>
+  <script>
+    (function () {
+      const endsWithFileExtension = /\/?\.[a-zA-Z]{2,}$/;
+      const originalResolve = System.constructor.prototype.resolve;
+
+      System.constructor.prototype.resolve = (id, parent) => {
+        // apply original resolve to make sure importmaps are resolved first
+        const url = originalResolve.apply(System, [id, parent]);
+        // append .js file extension if url is missing a file extension
+        return endsWithFileExtension.test(url) ? url : url + ".js";
+      };
+    })();
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="/dist/index.js"></script>
+</body>
+</html>
